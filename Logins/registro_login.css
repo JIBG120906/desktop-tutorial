@@ -1,0 +1,462 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", sans-serif;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: rgb(239, 239, 239);
+    
+}
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ----------------------------------Login------------------------------------- */
+.login-container{
+    display: flex;
+    gap: 20px;
+    width: 900px;
+    height: auto;
+    justify-content: center;
+   
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+  
+}
+
+.foto_display_left{
+    width: 400px;
+    height: auto;
+    background-image: url('../Fotos.jpg');
+    background-size: cover;
+    background-position: 50% 50%;
+    border-radius: 10px 50px 50px 10px;
+}
+
+.div_login{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    width: auto;
+}
+i{
+    color: #3043CF;
+}
+main{
+    margin: 0 auto;
+    padding-bottom: 100px;
+}
+.form_login{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+input{
+    width: 100%;
+    padding: 15px;
+    background-color: #E9E8F4;
+    border-radius: 50px;
+    font-size: 14px;
+    border: none;
+    outline: none;
+}
+.img_logo{
+    margin: 0 auto;
+    width: 100%;
+}
+.logo_login{
+    width: 400px;
+}
+#logo_oculto{
+    display: none;
+}
+@media (min-width: 481px) and (max-width: 1200px) {
+
+
+    .login-container {
+        display: flex;
+        flex-direction: column;
+        width: 100vw;
+        height: 100vh;
+        margin: 0 auto;
+    }
+
+    .foto_display_left {
+        width: 100vw;
+        height: 30vh;
+        border-radius: 0px;
+        background-position: 50%;
+    }
+    
+    main{
+        width: 80%;
+    }
+
+    input {
+        padding: 10px;
+        height:3vh;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    button {
+        padding: 10px;
+    }
+
+   h1{
+    font-size: 12px;
+   }
+   .img_logo{
+    width: 100%;
+    margin: 0 auto;
+   }
+}
+
+
+@media (max-width: 480px) {
+
+    .login-container {
+        width: 100vw;
+        height: 100vh;
+        margin: 0 auto;
+    }
+
+    .foto_display_left {
+        height: 30vh;
+        border-radius: 0px;
+        display: none;
+    }
+    
+    main{
+        width: 80%;
+    }
+
+    input {
+        padding: 10px;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    button {
+        padding: 10px;
+    }
+
+   h1{
+    font-size: 10px;
+   }
+   .img_logo{
+    background-image: url('../Fotos.jpg');
+    background-position: 50% 50%;
+    background-size: cover;
+    padding: 30px;
+   }
+   #logo_oculto{
+    display: flex;
+    border-radius: 20px;
+    }
+    #logo_no_oculto{
+        display: none;
+    }
+    .logo_login{
+        margin-top: 20px;
+        width: 100%;
+        
+    }
+    .form_login{
+        margin-top: 40px;
+        gap: 40px;
+    }
+}
+
+#Forget_Password{
+    font-size: 6px;
+    color: #3043CF;
+}
+#Forget_Password:hover{
+  
+        opacity: 75%;
+}
+button{
+    width: 200px;
+    padding: 15px;
+    border-radius: 50px;
+    border: none;
+    margin: 0 auto;
+    color: white;
+    background-color: #3043CF;
+    font-weight: 600;
+    transition: 0.4s;
+    cursor: pointer;
+}
+button:hover{
+    transform: scale(1.02);
+    transition: 0.4s;
+}
+.no_account{
+    margin: 0 auto;
+    text-decoration: none;
+    color: #3043CF;
+    font-weight: 600;
+    font-size: 13px;
+}
+.no_account:hover{
+    opacity: 75%;
+}
+
+/* ----------------------------------Login------------------------------------- */
+
+/* ----------------------------------Registro------------------------------------- */
+
+.registro-container{
+    width: 900px;
+    height: auto;
+    padding: 30px;
+    padding-bottom: 50px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+#logo_reg{
+    width: 50%;
+    margin: 0 auto;
+}
+center{
+    background-image: url('../Fotos.jpg');
+    border-radius: 10px 10px 50px 50px;
+    background-size: cover;
+    background-position: 50% 50%;
+    padding-bottom: 20px;
+}
+#form_reg{
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    padding-top: 20px;
+    padding-bottom: 50px;
+    display: grid;
+    grid-template-columns: 45% 45%; 
+    grid-template-rows: auto auto auto; 
+    grid-column-gap: 20px; 
+    grid-row-gap: 20px; 
+    justify-content: center; 
+    align-items: center; 
+}
+.div_reg{
+    display: flex;
+    gap: 15px;
+    justify-content: center; 
+    align-items: center;
+}
+#boton_reg{
+    width: 200px;
+    height: auto;
+    margin: 0 auto;
+}
+.yes_account{
+    margin: 0 auto;
+    padding: 20px;
+    text-decoration: none;
+    color: #3043CF;
+    font-weight: 600;
+    font-size: 13px;
+}
+.yes_account:hover{
+    opacity: 75%;
+}
+
+@media (min-width: 481px) and (max-width: 1200px) {
+    
+    .registro-container{
+        width: 100vw;
+        height: 150vh;
+        margin: 0 auto;
+    }
+    #form_reg{
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+        width: auto;
+        height: auto;
+        padding: 50px;
+        
+    }
+    center{
+        margin-top: 150px;
+    }
+    .div_reg{
+        width: 100%;
+    }
+    input{
+        height: 5vh;
+        font-size: 20px;
+        padding: 20px;
+    }
+    .yes_account{
+        font-size: 20px;
+        display: flex;
+        justify-content: center;
+    }
+    button{
+        width: 30vw;
+        height: 5vh;
+        margin: 0 auto;
+        font-size: 20px;
+    }
+
+}
+
+@media (max-width: 480px) and (min-width: 351px)  {
+    body{
+        overflow-x: hidden;
+        background-color: #E9E8F4;
+    }
+    .registro-container{
+        width: 100vw;
+        height: auto;
+        margin: 0 auto;
+    }
+
+    #logo_reg{
+        width: 100%;
+    }
+    center{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 20px;
+        margin-top: 60px;
+    }
+
+    #form_reg{
+        display: flex;
+        flex-direction: column;
+    }
+    .div_reg{
+        width: 100%;
+    }
+    input{
+        padding: 20px;
+        height: 3vh;
+    }
+}
+
+@media (max-width: 350px) and (min-width: 151px){
+    body{
+        overflow-x: hidden;
+        background-color: #E9E8F4;
+    }
+    .registro-container{
+        width: 100vw;
+        height: auto;
+        margin: 0 auto;
+    }
+
+    #logo_reg{
+        width: 100%;
+    }
+    center{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 20px;
+        margin-top: 250px;
+    }
+
+    #form_reg{
+        display: flex;
+        flex-direction: column;
+    }
+    .div_reg{
+        width: 100%;
+    }
+    input{
+        padding: 20px;
+        height: 3vh;
+    }
+
+}
+
+/*--------------------------Registro--------------------------*/
+
+.contrasenia_recuperar{
+    width: 470px;
+    height: 600px;
+    display: flex;
+    margin: 0 auto;
+    border-radius: 10px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #ffffff;
+    box-shadow:  1px 1px 21px solid rgba(0, 0, 0, 0.02);
+}
+.contenedor_encabezado{
+    height: 140px;
+    width: 470px;
+    background-color:#3043cf;
+    display: flex;
+    justify-content: center;
+    align-items: center ;
+    color: white;
+    border-radius: 10px 10px 50px 50px;
+    padding: 30px 0;
+
+}
+.contenedor_encabezado h1{
+    font-size: 25px; 
+    color: #ffffff;
+    margin: 0;
+}
+.contrasenia_recuperar p {
+    width: 300px;
+    margin: 20px 0;
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: 500;
+}
+.contrasenia_recuperar span {
+    color: #3043cf;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+.contrasenia_recuperar form{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 50px;
+    justify-content: center;
+    align-items: center;
+}
+.input_contrasenia{
+    width: 300px;
+    height: 60px;
+    padding: 15px;
+    background-color: #E9E8F4;
+    border-radius: 50px;
+    outline: none; 
+    font-size: 16px;
+}
+.boton_cambio_contrasenia{
+    width: 200px;
+    padding: 15px;
+    border-radius: 50px;
+    border: none;
+    margin: 0 auto;
+    color: white;
+    background-color: #3043cf;
+    font-weight: 600;
+    transition: 0.4s;
+    font-size: 15px;
+}
+.boton_cambio_contrasenia:hover {
+    transition: 0.3s;
+    transform:Â scale(1.02);
+}
