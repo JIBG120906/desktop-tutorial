@@ -37,6 +37,9 @@
     height: 100%;  
     object-fit: cover;  
     border-radius: 0px 0px 20px 20px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50%;
 }
 
 .perfil_container {

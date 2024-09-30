@@ -2,16 +2,16 @@
 require_once("../conexion.php");
 include 'traerid.php'; 
 
-$_SESSION["email"] = $email;
+session_start(); 
+$email = $_SESSION["email"];
 $idu = idUsuario($email); 
 
 $con = conectar_bd();
-$mesage = ""; // Variable para almacenar mensajes
 
 if (isset($_GET['id'])) {
     $publicacionId = intval($_GET['id']); 
 
-    
+    // comprovar si ya hay un like
     $query = "SELECT * FROM megusta WHERE IdUsuario = ? AND IdPublicacion = ?";
     $stmt = $con->prepare($query);
     $stmt->bind_param("ii", $idu, $publicacionId);
@@ -19,32 +19,36 @@ if (isset($_GET['id'])) {
     $result = $stmt->get_result();
 
     if ($result->num_rows == 0) {
-        // Si no existe un "like", insertar uno nuevo
+        // si no hy un like lo crea
         $insertQuery = "INSERT INTO megusta (IdUsuario, IdPublicacion) VALUES (?, ?)";
         $insertStmt = $con->prepare($insertQuery);
         $insertStmt->bind_param("ii", $idu, $publicacionId);
-
-        if ($insertStmt->execute()) {
-            $mesage = "Like agregado exitosamente.";
-        } else {
-            $mesage = "Error al agregar el like: " . $con->error;
-        }
-        $insertStmt->close(); // Cerrar el statement
+        $insertStmt->execute();
+        $insertStmt->close();
     } else {
-        $mesage = "Ya has dado like a esta publicación.";
+        // si ya hay un like lo elimina
+        $deleteQuery = "DELETE FROM megusta WHERE IdUsuario = ? AND IdPublicacion = ?";
+        $deleteStmt = $con->prepare($deleteQuery);
+        $deleteStmt->bind_param("ii", $idu, $publicacionId);
+        $deleteStmt->execute();
+        $deleteStmt->close();
     }
+
+    // contar cantidad de likes en una publicacion
+    $countQuery = "SELECT COUNT(*) as total_likes FROM megusta WHERE IdPublicacion = ?";
+    $countStmt = $con->prepare($countQuery);
+    $countStmt->bind_param("i", $publicacionId);
+    $countStmt->execute();
+    $countResult = $countStmt->get_result();
+    $row = $countResult->fetch_assoc();
+
+    // mandar total de likes en json al js
+    echo json_encode(['total_likes' => $row['total_likes']]);
+    
+  
+    $stmt->close();
+    $con->close();
 } else {
-    $mesage = "Error: ID de publicación no recibido.";
+    echo json_encode(['error' => 'ID de publicación no recibido.']);
 }
-
-// Cerrar conexiones
-$stmt->close();
-$con->close(); 
-
-// Guardar el mensaje en la sesión para mostrar en index.php
-$_SESSION['message'] = $message;
-
-// Redireccionar a index.php
-header("Location: index.php");
-exit(); // Asegurarse de que el script se detenga después de la redirección
 ?>

@@ -9,6 +9,9 @@
             <div class="col-md-4">
                 <div class="card mb-4">
                     <div class="card-body">
+                        
+                        <img class="foto-perfil-publicacion d-block mb-3" alt="Foto de perfil" style="width: 50px; height: 50px; border-radius: 50%;" />
+                        
                         <h5 class="card-title"></h5>
                         <h6 class="card-subtitle mb-2 text-muted"></h6>
                         <p class="card-text"></p>
@@ -26,6 +29,7 @@
         </template>
     </div>
 </div>
+
 
 <script src="publicaciones.js"></script>
 </body>
