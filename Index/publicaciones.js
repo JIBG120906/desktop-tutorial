@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
             publicaciones.forEach(publicacion => {
                 const tarjeta = document.importNode(template, true);
 
-                // Rellenar los datos de la tarjeta
+                // rellenar los datos
                 tarjeta.querySelector('.card-title').textContent = publicacion.Titulo;
                 tarjeta.querySelector('.card-subtitle').textContent = 'Categoría: ' + publicacion.Categoria;
                 tarjeta.querySelector('.card-text').textContent = publicacion.Contenido;
@@ -33,14 +33,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 const imgElement = tarjeta.querySelector('.card-img-top');
                 const hiddenInput = tarjeta.querySelector('.publicacion-id');
 
-                // Asignar el ID de la publicación al campo oculto
                 hiddenInput.value = publicacion.IdPublicacion;
 
-                // Asignar el ID al botón "Me Gusta"
+                
                 const meGustaButton = tarjeta.querySelector('.me-gusta');
                 meGustaButton.setAttribute('data-id', publicacion.IdPublicacion);
 
-                // Mostrar la imagen si es un archivo de imagen
+                // mostrar la imagen 
                 if (/\.(jpg|jpeg|png|gif)$/i.test(publicacion.Archivos)) {
                     imgElement.src = publicacion.Archivos;
                     imgElement.classList.remove('d-none');
@@ -50,20 +49,28 @@ document.addEventListener('DOMContentLoaded', () => {
                     linkElement.classList.remove('d-none');
                 }
 
-                // Mostrar la cantidad de likes
+                //  contador de likes 
                 const likeCountElement = tarjeta.querySelector('.like-count');
-                likeCountElement.textContent = publicacion.total_likes || 0; // Asignar total de likes
+                likeCountElement.textContent = publicacion.total_likes || 0;
+
+                // mostrar foto de el que creo la publicacion
+                if (publicacion.Foto) {
+                    const fotoPerfil = tarjeta.querySelector('.foto-perfil-publicacion');
+                    fotoPerfil.src = 'data:image/jpeg;base64,' + publicacion.Foto;
+                    fotoPerfil.alt = 'Foto de perfil';
+                    fotoPerfil.classList.remove('d-none');
+                }
 
                 publicacionesContainer.appendChild(tarjeta);
             });
 
-            // Agregar el evento de clic después de agregar las tarjetas
+            //evento a botones like
             const meGustaButtons = document.querySelectorAll('.me-gusta');
             meGustaButtons.forEach(button => {
-                button.addEventListener('click', function() {
+                button.addEventListener('click', function () {
                     const publicacionId = this.getAttribute('data-id');
 
-                    // Redirigir a like.php pasando el ID en la URL
+                   
                     fetch('like.php?id=' + encodeURIComponent(publicacionId), { method: 'POST' })
                         .then(response => {
                             if (!response.ok) {
@@ -72,8 +79,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             return response.json();
                         })
                         .then(data => {
-                            // Actualiza el contador de "likes"
-                            actualizarContadorLikes(publicacionId);
+                           
+                            window.location.reload();
                         })
                         .catch(error => console.error('Error al procesar Me Gusta:', error));
                 });
@@ -86,20 +93,3 @@ document.addEventListener('DOMContentLoaded', () => {
             publicacionesContainer.appendChild(errorMsg);
         });
 });
-
-// Función para actualizar el contador de likes
-function actualizarContadorLikes(publicacionId) {
-    fetch('contador_likes.php?id=' + encodeURIComponent(publicacionId))
-        .then(response => response.json())
-        .then(data => {
-            if (data.total_likes !== undefined) {
-                
-                const tarjeta = document.querySelector(`.publicacion-id[value="${publicacionId}"]`).closest('.card-body');
-                const likeCountElement = tarjeta.querySelector('.like-count');
-                likeCountElement.textContent = data.total_likes;
-            }
-        })
-        .catch(error => {
-            console.error('Error al actualizar los likes:', error);
-        });
-}

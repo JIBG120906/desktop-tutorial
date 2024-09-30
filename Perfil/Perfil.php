@@ -7,57 +7,36 @@ require('upload.php');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css.css">
-    <style>
-      .registro-container {
-            position: relative;
-            width: 100%;
-            text-align: center;
-        }
-        .banner-perfil {
-            width: 100%;
-            height: 200px;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-        .perfil-container {
-            position: relative;
-            display: inline-block;
-            margin-top: -50px; 
-        }
-        .foto-perfil {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background-size: cover;
-            background-position: center;
-            border: 2px solid #fff; /* Opcional: añade un borde blanco para que la foto se destaque */
-        }
-    </style>
+    <link rel="stylesheet" href="Style.css">
     <title>Perfil</title>
 </head>
 <body>
-<div class="registro-container">
-        <center>
-            <h1>Bienvenido <?php echo htmlspecialchars($nickname); ?></h1>
-            <p>Correo: <?php echo htmlspecialchars($email); ?></p>
+    <div class="registro_container">
 
-            <?php if ($banner_mostrar): ?>
-                <div class="banner-perfil">
-                    <?php echo $banner_mostrar; ?>
-                </div>
+        <div class="contenedor_banner">
+            
+         <?php if ($banner_mostrar): ?>
+                <div class="mostrar_banner">  
+                    <div> <?php echo $banner_mostrar; ?> </div>
+                 </div>
             <?php else: ?>
                 <p>No tienes un banner de perfil cargado.</p>
             <?php endif; ?>
+        </div>
 
-            <div class="perfil-container">
+        <div class="perfil_container">
                 <?php if ($foto_mostrar): ?>
-                    <?php echo $foto_mostrar; ?>
+                    <div class="mostrar_perfil">
+                        <div> <?php echo $foto_mostrar; ?> </div>
+                    </div>
                 <?php else: ?>
                     <p>No tienes una foto de perfil cargada.</p>
                 <?php endif; ?>
-            </div>
+        </div>
+
+        <div class="info_container">
+            <h1><?php echo htmlspecialchars($nickname); ?></h1>
+            <p><?php echo htmlspecialchars($email); ?></p>
 
             <form method="POST" enctype="multipart/form-data" action="upload.php">
                 <label for="pais">País:</label>
@@ -88,11 +67,24 @@ require('upload.php');
                 <input type="file" name="banner" accept="image/jpeg"><br><br>
 
                 <input type="submit" name="guardar" value="Guardar Cambios">
+
+                <br>
+              <a href="../logout.php">Cerrar sesión</a>
+              <a href="crear_publicacion.php">Crear publicaciones</a>   
             </form>
-            <br>
-            <a href="../logout.php">Cerrar sesión</a>
-            <a href="crear_publicacion.php">Crear publicaciones</a>
-        </center>
+            </div>
+   
+        </div>
+
+
+
+
+
+
+
+
     </div>
 </body>
 </html>
+
+
